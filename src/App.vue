@@ -1,26 +1,52 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent } from 'vue';
+import background from './assets/background.jpg'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    RouterLink,
+    RouterView,
+    Header,
+    Footer
+  },
+  data() {
+    return {
+
+    }
+  }
+});
+
 </script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="body">
+    <div id="app">
+    <Header />
+    <Router-view />
+    <Footer />
+  </div>
+  </div>
 </template>
 
 <style scoped>
+.body {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  align-items: start;
+  justify-content: left;
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; 
+  width: 100vw;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -39,7 +65,7 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: darkred;
 }
 
 nav a.router-link-exact-active:hover {
@@ -50,10 +76,24 @@ nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  color: darkred;
+  font-size: 120%;
 }
 
 nav a:first-of-type {
   border: 0;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+router-view {
+  flex: 1;
 }
 
 @media (min-width: 1024px) {
@@ -82,4 +122,5 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
+
 </style>
