@@ -1,18 +1,18 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import { defineComponent } from 'vue';
-import background from './assets/background.jpg'
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
+import HeaderSect from './components/HeaderSect.vue'
+import FooterSect from './components/FooterSect.vue'
+import Product from './views/ProductView.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     RouterLink,
     RouterView,
-    Header,
-    Footer
+    HeaderSect,
+    FooterSect,
+    Product
   },
   data() {
     return {
@@ -20,15 +20,14 @@ export default defineComponent({
     }
   }
 });
-
 </script>
+
 <template>
-  <div class="body">
-    <div id="app">
-    <Header />
-    <Router-view />
-    <Footer />
-  </div>
+  <div id="app" class="body">
+    <HeaderSect />
+    <h1>Welcome to Tadamart</h1>
+    <RouterView />
+    <FooterSect />
   </div>
 </template>
 
@@ -44,7 +43,7 @@ export default defineComponent({
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh; 
+  height: 100vh;
   width: 100vw;
 }
 header {
@@ -57,32 +56,6 @@ header {
   margin: 0 auto 2rem;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: darkred;
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-  color: darkred;
-  font-size: 120%;
-}
-
-nav a:first-of-type {
-  border: 0;
-}
 body {
   margin: 0;
   font-family: Arial, sans-serif;
