@@ -3,7 +3,6 @@ import { RouterLink, RouterView } from 'vue-router'
 import { defineComponent } from 'vue';
 import HeaderSect from './components/HeaderSect.vue'
 import FooterSect from './components/FooterSect.vue'
-import Product from './views/ProductView.vue';
 
 export default defineComponent({
   name: 'App',
@@ -12,7 +11,6 @@ export default defineComponent({
     RouterView,
     HeaderSect,
     FooterSect,
-    Product
   },
   data() {
     return {
@@ -23,33 +21,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <div id="app" class="body">
+  <div class="container">
     <HeaderSect />
-    <h1>Welcome to Tadamart</h1>
     <RouterView />
     <FooterSect />
   </div>
 </template>
 
 <style scoped>
-.body {
-  position: absolute;
-  display: flex;
-  top: 0;
-  left: 0;
-  align-items: start;
-  justify-content: left;
-  background-image: url('./assets/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
-}
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
 
 .logo {
   display: block;
@@ -90,7 +69,6 @@ router-view {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
