@@ -5,8 +5,10 @@
       <Product
         v-for="product in products"
         :key="product.id"
-        :product="product"
-      />
+        :product="product">
+        <RouterLink :to="`/product/${product.id}`">View Details</RouterLink>
+      </Product>
+
     </div>
   </div>
 </template>
