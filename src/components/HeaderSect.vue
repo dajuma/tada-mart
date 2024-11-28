@@ -21,7 +21,7 @@ export default {
 };
 </script>
 <template>
-  <header id="app">
+  <header>
     <img
       alt="tadamart logo"
       class="logo"
@@ -39,7 +39,7 @@ export default {
         <RouterLink to="/cartegory">Category</RouterLink>
         <RouterLink to="/cart">Cart</RouterLink>
         <RouterLink to="/checkout">Checkout</RouterLink>
-        <RouterLink to="/product">Product</RouterLink>
+        <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/order-tracking">Order Tracking</RouterLink>
       </nav>
 
@@ -56,7 +56,11 @@ export default {
   </header>
 </template>
 
-<style>
+<style scoped>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
 #app {
   position: relative;
   color: white;

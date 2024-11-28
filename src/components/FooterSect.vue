@@ -1,6 +1,5 @@
 <template>
     <footer class="footer">
-      <font-awesome-icon :icon="['fab', 'facebook']" />
       <p>&copy; 2024 Tadamart. All rights reserved.</p>
 
       <div class="social-icons">
@@ -29,34 +28,26 @@
   };
   </script>
 
-  <style>
+  <style scoped>
   .footer {
-    position: absolute;
     width: 100vw;
     height: 10vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    left: 0;
-    top: 540px;
     background-color: grey;
   }
   p {
-    position: absolute;
     display: flex;
-    left: 340px;
   }
 
   .footer .social-icons {
-  position: absolute;
   margin-top: 1rem;
   display: flex;
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  left: 700px;
-  top: 0px;
 }
 
 .footer .social-icons img,
