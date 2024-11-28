@@ -1,5 +1,5 @@
 <template>
-  <div class="product-view">
+  <div class="products-view">
     <h2>Our Products</h2>
     <div class="products-grid">
       <Product
@@ -15,7 +15,7 @@
 import Product from "@/components/Product.vue";
 
  export default {
-  name: "ProductView",
+  name: "ProductsView",
   components: {
     Product,
   },
@@ -53,7 +53,7 @@ import Product from "@/components/Product.vue";
 </script>
 
 <style scoped>
-.product-view {
+.products-view {
   padding: 2rem;
 }
 
