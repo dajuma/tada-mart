@@ -31,7 +31,4 @@
     width: 100vw;
 
   }
-  .hero-header {
-
-  }
 </style>

@@ -26,26 +26,57 @@ import Product from "@/components/Product.vue";
           id: 1,
           name: "Brake Pads",
           price: 29.99,
-          image: "/assets/products/brake-pads.jpg",
+          image: "/public/images/brake-pads.jpg",
         },
         {
           id: 2,
           name: "Car Battery",
           price: 99.99,
-          image: "/assets/products/car-battery.jpg",
+          image: "/public/images/car-battery.png",
         },
         {
           id: 3,
           name: "Oil Filter",
           price: 19.99,
-          image: "/assets/products/oil-filter.jpg",
+          image: "/public/images/oil-filter.jpg",
         },
         {
           id: 4,
           name: "Spark Plug",
           price: 14.99,
-          image: "/assets/products/spark-plug.jpg",
+          image: "/public/images/spark-plug.jpg",
         },
+        {
+          id: 5,
+          name: "Benz wheel rim",
+          price: 300.99,
+          image: "/public/images/Benz-wheel-rim.jpg",
+        },
+        {
+          id: 6,
+          name: "Bmw steering wheel",
+          price: 50.99,
+          image: "/public/images/bmw-steering-wheel.jpg",
+        },
+        {
+          id: 7,
+          name: "Car tires",
+          price: 100.99,
+          image: "/public/images/tires.jpg",
+        },
+        {
+          id: 8,
+          name: "Vintage steering wheel",
+          price: 300.99,
+          image: "/public/images/car-Mustang-Vintage.jpg",
+        },
+        {
+          id: 9,
+          name: "Tyres",
+          price: 300.99,
+          image: "/public/images/car-tyres-63928.jpg",
+        },
+
       ],
     };
   },
@@ -59,7 +90,8 @@ import Product from "@/components/Product.vue";
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1rem;
+  padding: 1rem;
 }
 </style>
