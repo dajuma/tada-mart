@@ -24,6 +24,7 @@ export default defineComponent({
   <div class="container">
     <HeaderSect />
     <RouterView />
+    <RouterLink />
     <FooterSect />
   </div>
 </template>
