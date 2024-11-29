@@ -1,4 +1,5 @@
 <script>
+import { mapActions } from 'vuex';
 import { RouterLink } from 'vue-router';
 
 export default {
@@ -37,6 +38,13 @@ export default {
     this.loadProduct();
   },
   methods: {
+    methods: {
+    ...mapActions(['addToCart']), // Map the addToCart action from Vuex
+    handleAddToCart() {
+      this.addToCart(this.product); // Dispatch addToCart action
+      console.log(`${this.product.name} added to cart`);
+    },
+  },
     loadProduct() {
       const productId = this.id;
       this.product = this.allProducts.find((prod) => prod.id === productId);
