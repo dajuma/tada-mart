@@ -91,8 +91,12 @@ import Product from "@/components/Product.vue";
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1rem;
   padding: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+a {
+  color: darkred;
+  font-weight: bold;
 }
 </style>
