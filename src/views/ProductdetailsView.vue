@@ -1,11 +1,14 @@
 <script>
-import { RouterLink } from "vue-router";
+import { RouterLink } from 'vue-router';
 
 export default {
   name: "ProductdetailsView",
+  components: {
+    RouterLink,
+  },
   props: {
     id: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
@@ -27,7 +30,6 @@ export default {
           image: "/images/car-battery.png",
           description: "Reliable and durable car battery with long life.",
         },
-        // Add more products as needed
       ],
     };
   },
@@ -47,9 +49,6 @@ export default {
     addToCart(product) {
       console.log(`${product.name} added to cart`);
     },
-  },
-  components: {
-    RouterLink,
   },
 };
 </script>
@@ -77,8 +76,8 @@ export default {
 }
 
 .product-image {
-  max-width: 100%;
-  height: auto;
+  max-width: 30%;
+  height: 30%;
   margin-bottom: 1rem;
 }
 
@@ -99,23 +98,24 @@ button {
   color: white;
   background-color: #0077cc;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   margin-top: 1rem;
 }
 
 button:hover {
-  background-color: #005fa3;
+  background-color: #2b2d2e;
 }
 
 a {margin-top: 1rem;
   display: inline-block;
   color: #0077cc;
   text-decoration: none;
+  border-radius: 10px 10px 10px 10px;
 }
 
 a:hover {
-  text-decoration: underline;
+  background-color: #2b2d2e;
 }
 </style>
 

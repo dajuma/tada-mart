@@ -8,7 +8,6 @@
         :product="product">
         <RouterLink :to="`/product/${product.id}`">View Details</RouterLink>
       </Product>
-
     </div>
   </div>
 </template>
