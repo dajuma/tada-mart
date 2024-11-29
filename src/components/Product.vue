@@ -51,14 +51,22 @@ export default {
   display: flex;
   font-size: 1rem;
   margin: 1rem 0;
-  border-radius: 20% 20% 20% 20%;
   align-items: center;
   white-space: nowrap;
 }
+.product-name a {
+  color: darkred;
+  font-size: larger;
+}
+
+.product-name a:hover {
+  color: firebrick;
+}
 
 .product-price {
-  color: green;
+  color: white;
   font-weight: bold;
+  margin: 1rem;
 }
 
 .add-to-cart {
