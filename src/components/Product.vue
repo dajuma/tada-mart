@@ -9,7 +9,8 @@ export default {
         return (
           typeof value.name === 'string' &&
           typeof value.image === 'string' &&
-          typeof value.price === 'number'
+          typeof value.price === 'number' &&
+          typeof value.id === 'string'
         );
       },
     },
@@ -17,7 +18,6 @@ export default {
   methods: {
     addToCart(product) {
       console.log(`${product.name} added to cart`);
-
     },
   },
 };
@@ -25,8 +25,10 @@ export default {
 
 <template>
   <div class="product">
-    <img :src="product.image || 'default-image-path.jpg'" :alt="product.name" class="product-image" />
-    <h3 class="product-name"><RouterLink :to="'/product/'+ product.id">{{ product.name }}</RouterLink></h3>
+    <img :src="product.image || '/default-image-path.jpg'" :alt="product.name" class="product-image" />
+    <h3 class="product-name">
+      <RouterLink :to="'/product/' + product.id">{{ product.name }}</RouterLink>
+    </h3>
     <p class="product-price">${{ (product.price || 0).toFixed(2) }}</p>
     <button class="add-to-cart" v-on:click="addToCart(product)">Add to Cart</button>
   </div>
@@ -39,6 +41,7 @@ export default {
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
 
 .product-image {
@@ -64,7 +67,7 @@ export default {
 }
 
 .product-price {
-  color: white;
+  color: black;
   font-weight: bold;
   margin: 1rem;
 }
