@@ -1,23 +1,34 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
 
 <template>
   <div class="home">
+    <div class="hero">
+      <div class="hero-background"></div>
+      <h1 class="hero-header">Welcome to tadamart</h1>
+    </div>
   </div>
 </template>
-<style>
-body {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: left;
-  left: 0;
-}
-.home {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-}
+<style scoped>
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+  }
+  .hero-background{
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    left: 0;
+    background-image: url('/assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+
+  }
 </style>
