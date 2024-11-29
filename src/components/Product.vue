@@ -26,7 +26,7 @@ export default {
 <template>
   <div class="product">
     <img :src="product.image || 'default-image-path.jpg'" :alt="product.name" class="product-image" />
-    <h3 class="product-name">{{ product.name }}</h3>
+    <h3 class="product-name"><RouterLink :to="'/product/'+ product.id">{{ product.name }}</RouterLink></h3>
     <p class="product-price">${{ (product.price || 0).toFixed(2) }}</p>
     <button class="add-to-cart" v-on:click="addToCart(product)">Add to Cart</button>
   </div>
@@ -48,8 +48,12 @@ export default {
 }
 
 .product-name {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
+  display: flex;
+  font-size: 1rem;
+  margin: 1rem 0;
+  border-radius: 20% 20% 20% 20%;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .product-price {
