@@ -24,7 +24,7 @@ export default {
           <h3>{{ item.name }}</h3>
           <p>${{ item.price.toFixed(2) }}</p>
         </div>
-        <button @click="handleRemoveFromCart(item)" class="remove-button">
+        <button @click="handleRemoveFromCart" class="remove-button">
           Remove
         </button>
       </li>
