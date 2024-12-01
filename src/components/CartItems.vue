@@ -8,66 +8,68 @@ export default {
   },
   methods: {
     ...mapActions(['removeFromCart']),
-    handleRemoveFromCart(product) {
-      this.removeFromCart(product);
+    handleRemoveFromCart(item) {
+      this.removeFromCart(item);
     },
   },
 };
 </script>
 
 <template>
-  <div>
-    <ul class="cart-list">
-      <li v-for="item in cartItems" :key="item.id" class="cart-item">
-        <img :src="item.image" :alt="item.name" class="cart-item-image" />
-        <div class="cart-item-details">
-          <h3>{{ item.name }}</h3>
-          <p>${{ item.price.toFixed(2) }}</p>
-        </div>
-        <button @click="handleRemoveFromCart" class="remove-button">
-          Remove
-        </button>
-      </li>
-    </ul>
-    <div class="cart-summary">
-      <h3>Total: ${{ cartTotal.toFixed(2) }}</h3>
-      <button class="checkout-button">Checkout</button>
+  <div class="cart-items">
+    <h2>Your Cart Items</h2>
+    <table v-if="cartItems.length > 0" class="cart-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Item name</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in cartItems" :key="item.id">
+          <td><img :src="item.image" :alt="item.name" class="cart-item-image" /> </td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.price.toFixed(2) }}</td>
+          <td>
+          <button @click="handleRemoveFromCart(item)" class="remove-button" />
+            Remove
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div v-else>
+      <p>Your cart is empty!</p>
+    </div>
+    <div v-if="cartItems.length" > 0" class="cart-summary">
+    <h3>Total: ${{ cartTotal.toFixed(2) }}</h3>
+    <button class="checkout-button">Checkout</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.cart-list {
-  list-style-type: none;
-  padding: 0;
+.cart-items {
+  margin: 2rem;
 }
 
-.cart-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
 }
 
-.cart-item-image {
+.cart-table th,
+.cart-table td {
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.cart-table img {
   max-width: 50px;
-  margin-right: 1rem;
-}
-
-.cart-item-details {
-  flex-grow: 1;
-}
-
-.remove-button {
-  padding: 0.5rem;
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.remove-button:hover {
-  background-color: #cc0000;
+  height: auto;
 }
 
 .cart-summary {
@@ -75,16 +77,29 @@ export default {
   text-align: right;
 }
 
-.checkout-button {
-  padding: 0.5rem 1rem;
-  background-color: #0077cc;
+.remove-button {
+  background-color: #e74c3c;
   color: white;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.remove-button:hover {
+  background-color: #c0392b;
+}
+
+.checkout-button {
+  background-color: #27ae60;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .checkout-button:hover {
-  background-color: #005fa3;
+  background-color: #1e8449;
 }
 </style>
