@@ -42,7 +42,7 @@ export default {
     <div v-else>
       <p>Your cart is empty!</p>
     </div>
-    <div v-if="cartItems.length" > 0" class="cart-summary">
+    <div v-if="cartItems.length" >
     <h3>Total: ${{ cartTotal.toFixed(2) }}</h3>
     <button class="checkout-button">Checkout</button>
     </div>
