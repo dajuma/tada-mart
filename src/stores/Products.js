@@ -92,9 +92,9 @@ const store = createStore ({
     cartItems(state) {
       return state.cart;
     },
-    availableProducts(state) {
-      return state.products;
-    },
+    cartTotal(state) {
+      return state.cart.reduce((total, item) => total + item.price, 0);
+    }
   },
 });
 
