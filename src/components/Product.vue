@@ -1,6 +1,8 @@
 <script>
+import { mapActions} from 'vuex'
+
 export default {
-  name: "ProductDetail",
+  name: "ProductDetails",
   props: {
     product: {
       type: Object,
@@ -16,8 +18,10 @@ export default {
     },
   },
   methods: {
-    addToCart(product) {
-      console.log(`${product.name} added to cart`);
+    ...mapActions(['addToCart']),
+    handleAddToCart() {
+      this.addToCart(this.product);
+      this.$router.push('/cart');
     },
   },
 };
