@@ -27,7 +27,7 @@ import Product from "@/components/Product.vue";
           id: 1,
           name: "Brake Pads",
           price: 29.99,
-          image: "/public/images/brake-pads.jpg",
+          image: "/images/brake-pads.jpg",
         },
         {
           id: 2,
