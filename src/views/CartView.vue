@@ -1,17 +1,21 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import CartItems from "../components/CartItems.vue";
 
 export default {
   name: "CartView",
+  components: {
+    CartItems,
+  },
   computed: {
     ...mapGetters(['cartItems', 'cartTotal']),
+  },
   methods: {
     ...mapActions(['removeFromCart']),
     handleRemoveFromCart(product) {
       this.removeFromCart(product);
     },
   },
-},
 };
 </script>
 
