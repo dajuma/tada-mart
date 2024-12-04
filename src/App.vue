@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import { defineComponent } from 'vue';
 import HeaderSect from './components/HeaderSect.vue'
 import FooterSect from './components/FooterSect.vue'
+import Products from './views/ProductsView.vue';
 
 export default defineComponent({
   name: 'App',
@@ -14,9 +15,11 @@ export default defineComponent({
   },
   data() {
     return {
-
-    }
+      baseURL: null,
+      products: null,
+      categories: null
   }
+  },
 });
 </script>
 
