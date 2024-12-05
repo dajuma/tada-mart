@@ -153,25 +153,31 @@ export default {
 
 .container {
   position: relative;
-  margin: 25rem auto;
+  margin: 26rem auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: space-around;
   height: auto;
-  padding-top: 2rem;
+  padding-top: 1rem;
+  max-width: 800px;
+  width: 90%;
 }
+
 .container2 {
   position: relative;
-  margin: auto;
+  margin: -7rem auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: space-around;
   height: auto;
-  padding-top: 2rem;
-  bottom: 20rem;
+  padding-top: 1rem;
+  bottom: 10rem;
+  max-width: 800px;
+  width: 90%;
 }
+
 hr {
   position: relative;
   bottom: 20rem;
