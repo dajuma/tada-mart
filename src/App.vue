@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import { defineComponent } from 'vue';
 import HeaderSect from './components/HeaderSect.vue'
 import FooterSect from './components/FooterSect.vue'
-import Products from './views/ProductsView.vue';
+import ProductsView from './views/ProductsView.vue';
 
 export default defineComponent({
   name: 'App',
