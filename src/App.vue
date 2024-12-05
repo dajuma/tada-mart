@@ -30,6 +30,7 @@ export default defineComponent({
     <RouterLink />
     <FooterSect />
   </div>
+  <CategoryBox :category="category" :products="someProductsArray" />
 </template>
 
 <style scoped>
