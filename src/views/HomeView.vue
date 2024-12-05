@@ -1,40 +1,101 @@
 <script>
+import { ref } from "vue";
 import Product from "@/components/Product.vue";
 import CategoryBox from "@/components/Category/CategoryBox.vue";
 
 export default {
   name: "Home",
-  components: {CategoryBox, Product},
-  props: {
-  categories: {
-    type: Array,
-    required: true,
-  },
-  products: {
-    type: Array,
-    required: true,
-  },
-},
-data() {
+  components: { CategoryBox, Product },
+  setup() {
+    const categories = ref([
+      {
+        id: 1,
+        name: "Brake Pads",
+        price: 29.99,
+        image: "/images/brake-pads.jpg",
+        description: "High-performance brake pads for smooth braking.",
+      },
+      {
+        id: 2,
+        name: "Car Battery",
+        price: 99.99,
+        image: "/images/car-battery.png",
+        description: "Reliable and durable car battery with long life.",
+      },
+      {
+        id: 3,
+        name: "Oil Filter",
+        price: 19.99,
+        image: "/images/oil-filter.jpg",
+        description: "Durable and efficient.",
+      },
+      {
+        id: 4,
+        name: "Spark Plug",
+        price: 14.99,
+        image: "/images/spark-plug.jpg",
+        description: "Affordable and high-performance.",
+      },
+      {
+        id: 5,
+        name: "Benz Wheel Rim",
+        price: 300.99,
+        image: "/images/Benz-wheel-rim.jpg",
+        description: "Stylish and reliable.",
+      },
+      {
+        id: 6,
+        name: "BMW Steering Wheel",
+        price: 50.99,
+        image: "/images/bmw-steering-wheel.jpg",
+        description: "Flexible and durable.",
+      },
+      {
+        id: 7,
+        name: "Car Tires",
+        price: 100.99,
+        image: "/images/tires.jpg",
+        description: "High-quality tires for smooth driving.",
+      },
+      {
+        id: 8,
+        name: "Vintage Steering Wheel",
+        price: 300.99,
+        image: "/images/car-Mustang-Vintage.jpg",
+        description: "Classy and elegant.",
+      },
+      {
+        id: 9,
+        name: "Tyres",
+        price: 300.99,
+        image: "/images/car-tyres-63928.jpg",
+        description: "Flexible and reliable.",
+      },
+    ]);
+
+    const products = ref(categories.value); // Reuse categories for demonstration
+    const categorySize = ref(6);
+    const productSize = ref(8);
+
+    const handleViewCategory = (category) => {
+      console.log("Viewing category:", category);
+    };
+
     return {
-      categorySize: 0,
-      productSize: 0,
+      categories,
+      products,
+      categorySize,
+      productSize,
+      handleViewCategory,
     };
   },
-  mounted() {
-  if (this.categories) {
-    this.categorySize = Math.min(6, this.categories.length);
-  }
-  if (this.products) {
-    this.productSize = Math.min(8, this.products.length);
-  }
-},
 };
 </script>
 
 <template>
   <div id="home">
     <div id="background-div" class="hero-background"></div>
+
     <!-- Display categories -->
     <div class="container">
       <div class="row">
@@ -43,13 +104,17 @@ data() {
         </div>
       </div>
       <div class="row">
-        <div v-for="index in categorySize" :key="index">
-          <CategoryBox :category="categories[index - 1]" />
-        </div>
+        <CategoryBox
+          v-for="(category, index) in categories.slice(0, categorySize)"
+          :key="category.id"
+          :category="category"
+          @view-category="handleViewCategory"
+        />
       </div>
     </div>
 
     <hr />
+
     <!-- Display top products -->
     <div class="container">
       <div class="row">
@@ -57,34 +122,48 @@ data() {
           <h2 class="part-3">Top Products</h2>
         </div>
       </div>
-
       <div class="row">
-        <div v-for="index in productSize" :key="index">
-          <Product :product="products[index - 1]" />
-        </div>
+        <Product
+          v-for="(product, index) in products.slice(0, productSize)"
+          :key="product.id"
+          :product="product"
+        />
       </div>
     </div>
   </div>
 </template>
-<style scoped>
-  .hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-  }
-  .hero-background{
-    position: absolute;
-    z-index: -10;
-    top: 0;
-    left: 0;
-    background-image: url('/assets/background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
 
-  }
+<style scoped>
+.hero-background {
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  left: 0;
+  background-image: url("/assets/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  margin: 2rem auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+  width: 100%;
+}
+
+.part-3 {
+  margin-bottom: 1rem;
+}
 </style>
