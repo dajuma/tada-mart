@@ -73,9 +73,9 @@ export default {
       },
     ]);
 
-    const products = ref(categories.value); // Reuse categories for demonstration
-    const categorySize = ref(6);
-    const productSize = ref(8);
+    const products = ref(categories.value);
+    const categorySize = ref(9);
+    const productSize = ref(9);
 
     const handleViewCategory = (category) => {
       console.log("Viewing category:", category);
@@ -108,13 +108,15 @@ export default {
           v-for="(category) in categories.slice(0, categorySize)"
           :key="category.id"
           :category="category"
+          class="categories"
           @view-category="handleViewCategory"
+
         />
 
       </div>
     </div>
-
     <hr />
+
 
     <!-- Display top products -->
     <div class="container2">
@@ -128,6 +130,7 @@ export default {
           v-for="(product) in products.slice(0, productSize)"
           :key="product.id"
           :product="product"
+          class="product"
         />
       </div>
     </div>
@@ -137,7 +140,7 @@ export default {
 <style scoped>
 .hero-background {
   position: absolute;
-  z-index: -10;
+  z-index: -1;
   top: 0;
   left: 0;
   background-image: url("/assets/background.jpg");
@@ -149,11 +152,31 @@ export default {
 }
 
 .container {
-  margin: 2rem auto;
+  position: relative;
+  margin: 25rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-around;
+  height: auto;
+  padding-top: 2rem;
 }
 .container2 {
-  margin: 2rem;
+  position: relative;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-around;
+  height: auto;
+  padding-top: 2rem;
+  bottom: 15rem;
 }
+hr {
+  position: relative;
+  bottom: 20rem;
+}
+
 
 .row {
   display: flex;
@@ -168,4 +191,66 @@ export default {
   color: brown;
   margin-bottom: 1rem;
 }
+.product {
+  flex: 1 1 calc(25% - 1rem);
+  max-width: calc(25% - 1rem);
+  box-sizing: border-box;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+
+.product:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.categories {
+  flex: 1 1 calc(25% - 1rem);
+  max-width: calc(25% - 1rem);
+  box-sizing: border-box;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+
+.categories:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {
+  .product {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+.categories {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+}
+}
+@media (max-width: 480px) {
+  .categories {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
 </style>
