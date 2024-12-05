@@ -170,7 +170,7 @@ export default {
   justify-content: space-around;
   height: auto;
   padding-top: 2rem;
-  bottom: 15rem;
+  bottom: 20rem;
 }
 hr {
   position: relative;
