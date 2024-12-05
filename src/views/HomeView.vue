@@ -4,7 +4,7 @@ import Product from "@/components/Product.vue";
 import CategoryBox from "@/components/Category/CategoryBox.vue";
 
 export default {
-  name: "Home",
+  name: "HomeView",
   components: { CategoryBox, Product },
   setup() {
     const categories = ref([
@@ -105,18 +105,19 @@ export default {
       </div>
       <div class="row">
         <CategoryBox
-          v-for="(category, index) in categories.slice(0, categorySize)"
+          v-for="(category) in categories.slice(0, categorySize)"
           :key="category.id"
           :category="category"
           @view-category="handleViewCategory"
         />
+
       </div>
     </div>
 
     <hr />
 
     <!-- Display top products -->
-    <div class="container">
+    <div class="container2">
       <div class="row">
         <div class="text-center">
           <h2 class="part-3">Top Products</h2>
@@ -124,7 +125,7 @@ export default {
       </div>
       <div class="row">
         <Product
-          v-for="(product, index) in products.slice(0, productSize)"
+          v-for="(product) in products.slice(0, productSize)"
           :key="product.id"
           :product="product"
         />
@@ -143,12 +144,15 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
 }
 
 .container {
   margin: 2rem auto;
+}
+.container2 {
+  margin: 2rem;
 }
 
 .row {
@@ -156,14 +160,12 @@ export default {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  color: black;
 }
-
 .text-center {
   text-align: center;
   width: 100%;
-}
-
-.part-3 {
+  color: brown;
   margin-bottom: 1rem;
 }
 </style>
