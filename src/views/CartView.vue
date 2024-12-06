@@ -1,11 +1,10 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import CartItems from "../components/CartItems.vue";
 
 export default {
   name: "CartView",
   components: {
-    CartItems,
+
   },
   computed: {
     ...mapGetters(['cartItems', 'cartTotal']),
@@ -22,7 +21,6 @@ export default {
 <template>
   <div class="cart-container">
     <h1>Your Cart</h1>
-    <CartItems :items="cartItems" />
     <div v-if="cartItems.length > 0">
       <ul class="cart-list">
         <li v-for="item in cartItems" :key="item.id" class="cart-item">
