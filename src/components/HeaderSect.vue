@@ -5,10 +5,80 @@ export default {
     return {
       searchQuery: "",
       cartItemCount: 3,
+      products: [
+      {
+          id: 1,
+          name: "Brake Pads",
+          price: 29.99,
+          image: "/images/brake-pads.jpg",
+          description: "High-performance brake pads for smooth braking.",
+        },
+        {
+          id: 2,
+          name: "Car Battery",
+          price: 99.99,
+          image: "/images/car-battery.png",
+          description: "Reliable and durable car battery with long life.",
+        },
+        {
+          id: 3,
+          name: "Oil Filter",
+          price: 19.99,
+          image: "/images/oil-filter.jpg",
+          description: "durable",
+        },
+        {
+          id: 4,
+          name: "Spark Plug",
+          price: 14.99,
+          image: "/images/spark-plug.jpg",
+          description: "Affordable",
+        },
+        {
+          id: 5,
+          name: "Benz wheel rim",
+          price: 300.99,
+          image: "/images/Benz-wheel-rim.jpg",
+          description: "What your brand needs",
+        },
+        {
+          id: 6,
+          name: "Bmw steering wheel",
+          price: 50.99,
+          image: "/images/bmw-steering-wheel.jpg",
+          description: "Flexible",
+        },
+        {
+          id: 7,
+          name: "Car tires",
+          price: 100.99,
+          image: "/images/tires.jpg",
+          description: "What drives you on?"
+        },
+        {
+          id: 8,
+          name: "Vintage steering wheel",
+          price: 300.99,
+          image: "/images/car-Mustang-Vintage.jpg",
+          description: "Classy",
+        },
+        {
+          id: 9,
+          name: "Tyres",
+          price: 300.99,
+          image: "/images/car-tyres-63928.jpg",
+          description: "flexibility counts",
+        },
+
+      ],
+      filteredProducts: [],
     };
   },
   methods: {
     handleSearch() {
+      this.filteredProducts = this.products.filter(product =>
+        product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
       console.log("Search query:", this.searchQuery);
     },
     performSearch() {
@@ -18,8 +88,10 @@ export default {
         alert("Please enter a search term.");
       }
     },
-    toggleSearch() {
-      this.showSearchInput = !this.showSearchInput;
+
+    focusSearchBar() {
+      this.$refs.searchInput.focus();
+      this.filteredProducts = [];
     },
   },
 };
@@ -44,10 +116,26 @@ export default {
         v-model="searchQuery"
         @input="handleSearch"
         class="search-input"
+        ref="searchInput"
         />
       <button class="search-button" @click="performSearch">
        <img src="/images/search.png" alt="Search" class="search-icon" />
       </button>
+      </div>
+
+      <div v-if="filteredProducts.length" class="search-results">
+        <h2>Search Results:</h2>
+        <ul>
+          <li v-for="product in filteredProducts" :key="product.id" class="product-item">
+            <img :src="product.image" :alt="product.name" class="product-image" />
+            <div class="product-details">
+              <h3>{{ product.name }}</h3>
+              <p>{{ product.description }}</p>
+              <p><strong>Price:</strong> ${{ product.price }}</p>
+            </div>
+          </li>
+        </ul>
+        <button class="back-to-search" @click="focusSearchBar">Back to Search</button>
       </div>
 
       <nav>
@@ -108,6 +196,22 @@ nav a:hover {
 .logo {
   display: flex;
   align-items: center;
+}
+
+.search-results {
+  position: relative;
+  display: flex;
+  margin-top: 0;
+  padding: 0rem;
+  background-color: grey;
+  border-radius: 4px;
+  width: 20rem;
+  top: 10rem;
+  right: 50rem;
+}
+
+.search-results h2 {
+  margin-bottom: 0;
 }
 .search-bar {
   position: relative;
