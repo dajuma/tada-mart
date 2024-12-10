@@ -89,7 +89,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['addToCart']), 
+    ...mapActions(['addToCart']),
     handleAddToCart() {
       this.addToCart(this.product);
       console.log(`${this.product.name} added to cart`);
@@ -111,6 +111,7 @@ export default {
 <template>
   <div>
     <div class="product-details" v-if="product">
+      <ProductDetails :product="someProduct" />
       <img class="product-image" :src="product.image" :alt="product.name" />
       <h1>{{ product.name }}</h1>
       <p class="product-price">${{ product.price.toFixed(2) }}</p>
