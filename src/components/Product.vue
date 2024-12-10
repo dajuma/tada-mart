@@ -1,7 +1,10 @@
-<script>
-import { mapActions} from 'vuex'
 
-export default {
+
+<script>
+import { defineComponent } from 'vue';
+import axios from 'axios';
+
+export default defineComponent({
   name: "ProductDetails",
   props: {
     product: {
@@ -12,32 +15,55 @@ export default {
           typeof value.name === 'string' &&
           typeof value.image === 'string' &&
           typeof value.price === 'number' &&
-          typeof value.id === 'string'
+          typeof value.id === 'number' 
         );
       },
     },
   },
+  data() {
+    return {
+      products: null,
+    };
+  },
   methods: {
-    ...mapActions(['addToCart']),
-    handleAddToCart() {
-      this.addToCart(this.product);
-      this.$router.push('/cart');
+    async fetchProducts() {
+      try {
+        const response = await axios.get('http://tadamart.test/api/products');
+        this.products = response.data.data;
+        console.log("Fetched products:", this.products);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    },
+    addToCart(product) {
+      console.log("Added to cart:", product);
+
     },
   },
-};
+  created() {
+    this.fetchProducts();
+  },
+});
 </script>
 
 <template>
-  <div class="product">
-    <img :src="product.image || '/default-image-path.jpg'" :alt="product.name" class="product-image" />
-    <h3 class="product-name">
-      <RouterLink :to="'/product/' + product.id">{{ product.name }}</RouterLink>
-    </h3>
-    <p class="product-price">${{ (product.price || 0).toFixed(2) }}</p>
-    <button class="add-to-cart" v-on:click="addToCart(product)">Add to Cart</button>
-  </div>
-</template>
+  <div class="product" v-if="products">
 
+    <div v-for="product in products" :key="product.id" class="product-item">
+      <img
+        :src="product.image ? `http://tadamart.test/storage/${product.image}` : '/default-image-path.jpg'"
+        :alt="product.name"
+        class="product-image"
+      />
+      <h3 class="product-name">
+        <router-link :to="'/product/' + product.id">{{ product.name }}</router-link>
+      </h3>
+      <p class="product-price">${{ (product.price || 0).toFixed(2) }}</p>
+      <button class="add-to-cart" @click="addToCart(product)">Add to Cart</button>
+    </div>
+  </div>
+  <p v-else>Loading products...</p>
+</template>
 <style>
 .product {
   border: 1px solid #ddd;
