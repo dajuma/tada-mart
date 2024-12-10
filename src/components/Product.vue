@@ -1,7 +1,8 @@
-<script>
-import { mapActions} from 'vuex'
 
-export default {
+<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: "ProductDetails",
   props: {
     product: {
@@ -12,19 +13,18 @@ export default {
           typeof value.name === 'string' &&
           typeof value.image === 'string' &&
           typeof value.price === 'number' &&
-          typeof value.id === 'string'
+          typeof value.id === 'number'
         );
       },
     },
   },
   methods: {
-    ...mapActions(['addToCart']),
-    handleAddToCart() {
-      this.addToCart(this.product);
-      this.$router.push('/cart');
+    addToCart(product) {
+      console.log("Added to cart:", product);
+
     },
   },
-};
+});
 </script>
 
 <template>
@@ -37,8 +37,8 @@ export default {
     <button class="add-to-cart" v-on:click="addToCart(product)">Add to Cart</button>
   </div>
 </template>
-
 <style>
+
 .product {
   border: 1px solid #ddd;
   padding: 1rem;

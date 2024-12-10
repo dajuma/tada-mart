@@ -1,16 +1,17 @@
 <script>
-import { RouterView } from 'vue-router'
+import {  RouterView } from 'vue-router';
 import { defineComponent } from 'vue';
-import HeaderSect from './components/HeaderSect.vue'
-import FooterSect from './components/FooterSect.vue'
+import HeaderSect from './components/HeaderSect.vue';
+import FooterSect from './components/FooterSect.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
+
     RouterView,
     HeaderSect,
     FooterSect,
-  }
+  },
 });
 </script>
 
