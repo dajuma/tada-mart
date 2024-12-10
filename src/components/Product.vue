@@ -29,7 +29,7 @@ export default {
 
 <template>
   <div class="product">
-    <img :src="product.image || '/default-image-path.jpg'" :alt="product.name" class="product-image" />
+    <img :src="product.imageURL || '/default-image-path.jpg'" :alt="product.name" class="product-image" />
     <h3 class="product-name">
       <RouterLink :to="'/product/' + product.id">{{ product.name }}</RouterLink>
     </h3>
