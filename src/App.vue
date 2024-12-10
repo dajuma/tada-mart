@@ -1,24 +1,16 @@
 <script>
-import { RouterLink, RouterView } from 'vue-router'
+import {  RouterView } from 'vue-router';
 import { defineComponent } from 'vue';
-import HeaderSect from './components/HeaderSect.vue'
-import FooterSect from './components/FooterSect.vue'
-import ProductsView from './views/ProductsView.vue';
+import HeaderSect from './components/HeaderSect.vue';
+import FooterSect from './components/FooterSect.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    RouterLink,
+
     RouterView,
     HeaderSect,
     FooterSect,
-  },
-  data() {
-    return {
-      baseURL: null,
-      products: null,
-      categories: null
-  }
   },
 });
 </script>
@@ -27,10 +19,10 @@ export default defineComponent({
   <div class="container">
     <HeaderSect />
     <RouterView />
-    <RouterLink />
+    <!--<RouterLink />-->
     <FooterSect />
   </div>
-  <CategoryBox :category="category" :products="someProductsArray" />
+  <!--<CategoryBox :category="category" :products="someProductsArray" />-->
 </template>
 
 <style scoped>
