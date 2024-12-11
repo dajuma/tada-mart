@@ -42,6 +42,8 @@ import { mapGetters, mapActions } from "vuex";
 <style scoped>
 .products-view {
   padding: 2rem;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .products-grid {

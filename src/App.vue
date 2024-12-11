@@ -4,13 +4,19 @@ import { defineComponent } from 'vue';
 import HeaderSect from './components/HeaderSect.vue';
 import FooterSect from './components/FooterSect.vue';
 
+import { mapGetters } from "vuex";
+import LoadingSpinner from './components/LoadingSpinner.vue';
+
 export default defineComponent({
   name: 'App',
   components: {
-
     RouterView,
     HeaderSect,
     FooterSect,
+    LoadingSpinner
+  },
+  computed: {
+    ...mapGetters(['isLoading']),
   },
 });
 </script>
@@ -21,6 +27,11 @@ export default defineComponent({
     <RouterView />
     <FooterSect />
   </div>
+  <Teleport to="body">
+    <div v-if="isLoading">
+      <LoadingSpinner />
+    </div>
+  </Teleport>
 </template>
 
 <style scoped>
