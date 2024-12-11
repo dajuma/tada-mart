@@ -1,6 +1,6 @@
+
 <script>
 import { defineComponent } from 'vue';
-import axios from 'axios';
 
 export default defineComponent({
   name: "ProductDetails",
@@ -18,44 +18,26 @@ export default defineComponent({
       },
     },
   },
-  data() {
-    return {
-      products: null,
-    };
-  },
   methods: {
     async fetchProducts() {
       try {
         const response = await axios.get('http://tadamart.test/api/products');
-        const allProducts = response.data.data;
-
-        const categories = new Set();
-        this.products = allProducts.filter((product) => {
-          if (!categories.has(product.category_id)) {
-            categories.add(product.category_id);
-            return true;
-          }
-          return false;
-        });
-
-        console.log("Filtered top products:", this.products);
+        this.products = response.data.data;
+        console.log("Fetched products:", this.products);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       }
     },
-
     addToCart(product) {
       console.log("Added to cart:", product);
     },
-  },
-  created() {
-    this.fetchProducts();
   },
 });
 </script>
 
 <template>
   <div class="product" v-if="products">
+
     <div v-for="product in products" :key="product.id" class="product-item">
       <img
         :src="product.image ? `http://tadamart.test/storage/${product.image}` : '/default-image-path.jpg'"
@@ -69,10 +51,8 @@ export default defineComponent({
       <button class="add-to-cart" @click="addToCart(product)">Add to Cart</button>
     </div>
   </div>
-  <p v-else>Loading products...</p>
 </template>
-
-<style scoped>
+<style>
 .product {
   border: 1px solid #ddd;
   padding: 1rem;

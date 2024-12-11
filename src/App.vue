@@ -19,10 +19,8 @@ export default defineComponent({
   <div class="container">
     <HeaderSect />
     <RouterView />
-    <!--<RouterLink />-->
     <FooterSect />
   </div>
-  <!--<CategoryBox :category="category" :products="someProductsArray" />-->
 </template>
 
 <style scoped>
