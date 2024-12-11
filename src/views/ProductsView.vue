@@ -22,10 +22,10 @@ import { mapGetters, mapActions } from "vuex";
     Product,
   },
   computed: {
-    ...mapGetters(['allProducts', 'isLoading']),
+    ...mapGetters('products', ['allProducts', 'isLoading']),
   },
   methods: {
-    ...mapActions(['fetchProducts']),
+    ...mapActions('products', ['fetchProducts']),
     loadProducts(){
       this.fetchProducts();
     }

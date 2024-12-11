@@ -16,7 +16,7 @@ export default defineComponent({
     LoadingSpinner
   },
   computed: {
-    ...mapGetters(['isLoading']),
+    ...mapGetters('products', ['isLoading']),
   },
 });
 </script>
