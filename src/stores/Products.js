@@ -34,12 +34,12 @@ const store = createStore ({
     async fetchProducts({ commit }) {
       commit('SET_LOADING', true);
       try {
-        const response = await axios.get('http://back.tadamart.local/api/products');
+        const response = await axios.get('http://tadamart.test/api/products');
         const data = response.data.data;
         const products = data.map(product => {
           return {
             ...product,
-            'imageURL' : `http://back.tadamart.local/storage/` + product.image
+            'imageURL' : `http://tadamart.test/storage/` + product.image
           }
         })
         commit('SET_PRODUCTS', products);
