@@ -1,7 +1,8 @@
-import { createStore } from 'vuex'
-import axios from 'axios'
+import { createStore } from 'vuex';
+import axios from 'axios';
+import auth from './modules/auth';
 
-const store = createStore({
+const store = createStore ({
   state() {
     return {
       cart: [],
@@ -11,7 +12,7 @@ const store = createStore({
   },
   mutations: {
     ADD_TO_CART(state, product) {
-      state.cart.push(product)
+      state.cart.push(product);
     },
     REMOVE_FROM_CART(state, product) {
       state.cart = state.cart.filter((item) => item !== product)
@@ -25,20 +26,20 @@ const store = createStore({
   },
   actions: {
     addToCart({ commit }, product) {
-      commit('ADD_TO_CART', product)
-    },
+    commit('ADD_TO_CART', product);
+},
     removeFromCart({ commit }, product) {
       commit('REMOVE_FROM_CART', product)
     },
     async fetchProducts({ commit }) {
       commit('SET_LOADING', true);
       try {
-        const response = await axios.get('http://back.tadamart.local/api/products');
+        const response = await axios.get('http://tadamart.test/api/products');
         const data = response.data.data;
         const products = data.map(product => {
           return {
             ...product,
-            'imageURL' : `http://back.tadamart.local/storage/` + product.image
+            'imageURL' : `http://tadamart.test/storage/` + product.image
           }
         })
         commit('SET_PRODUCTS', products);
@@ -51,7 +52,7 @@ const store = createStore({
   },
   getters: {
     cartItems(state) {
-      return state.cart
+      return state.cart;
     },
     cartTotal(state) {
       return state.cart.reduce((total, item) => total + item.price, 0)
@@ -63,6 +64,6 @@ const store = createStore({
       return state.loading
     }
   },
-})
+});
 
-export default store
+export default store;

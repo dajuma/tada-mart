@@ -152,6 +152,8 @@ export default {
         <RouterLink to="/checkout">Checkout</RouterLink>
         <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/order-tracking">Order Tracking</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
+        <RouterLink to="/register">Register</RouterLink>
        </nav>
 
 

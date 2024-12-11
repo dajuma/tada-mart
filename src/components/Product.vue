@@ -1,4 +1,3 @@
-
 <script>
 import { defineComponent } from 'vue';
 
@@ -21,7 +20,6 @@ export default defineComponent({
   methods: {
     addToCart(product) {
       console.log("Added to cart:", product);
-
     },
   },
 });
@@ -29,16 +27,18 @@ export default defineComponent({
 
 <template>
   <div class="product">
-    <img :src="product.imageURL || '/default-image-path.jpg'" :alt="product.name" class="product-image" />
-    <h3 class="product-name">
-      <RouterLink :to="'/product/' + product.id">{{ product.name }}</RouterLink>
-    </h3>
-    <p class="product-price">${{ (product.price || 0).toFixed(2) }}</p>
-    <button class="add-to-cart" v-on:click="addToCart(product)">Add to Cart</button>
+    <div class="product-item">
+      <img :src="product.imageURL" :alt="product.name" class="product-image" />
+      <h3 class="product-name">
+        <router-link :to="'/product/' + product.id">{{ product.name }}</router-link>
+      </h3>
+      <p class="product-price">${{ (product.price || 0).toFixed(2) }}</p>
+      <button class="add-to-cart" @click="addToCart(product)">Add to Cart</button>
+    </div>
   </div>
 </template>
-<style>
 
+<style scoped>
 .product {
   border: 1px solid #ddd;
   padding: 1rem;

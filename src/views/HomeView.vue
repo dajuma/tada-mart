@@ -3,6 +3,8 @@ import { ref } from "vue";
 import Product from "@/components/Product.vue";
 import CategoryBox from "@/components/Category/CategoryBox.vue";
 
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "HomeView",
   components: { CategoryBox, Product },
@@ -89,6 +91,20 @@ export default {
       handleViewCategory,
     };
   },
+  computed: {
+    ...mapGetters(['allProducts', 'isLoading']),
+  },
+  methods: {
+    ...mapActions(['fetchProducts']),
+    loadProducts(){
+      this.fetchProducts();
+    }
+  },
+  created(){
+    if (!this.allProducts.length){
+      this.loadProducts();
+    }
+  },
 };
 </script>
 
@@ -127,7 +143,7 @@ export default {
       </div>
       <div class="row">
         <Product
-          v-for="(product) in products.slice(0, productSize)"
+          v-for="(product) in allProducts"
           :key="product.id"
           :product="product"
           class="product"
