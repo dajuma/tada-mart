@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import auth from './modules/auth'
 
 const store = createStore ({
   state() {
@@ -95,6 +96,9 @@ const store = createStore ({
     cartTotal(state) {
       return state.cart.reduce((total, item) => total + item.price, 0);
     }
+  },
+  modules: {
+    auth,
   },
 });
 
