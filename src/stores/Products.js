@@ -1,8 +1,8 @@
-import { createStore } from 'vuex'
-import axios from 'axios'
-import auth from './modules/auth'
+import { createStore } from 'vuex';
+import axios from 'axios';
+import auth from './modules/auth';
 
-const store = createStore({
+const store = createStore ({
   state() {
     return {
       cart: [],
@@ -12,7 +12,7 @@ const store = createStore({
   },
   mutations: {
     ADD_TO_CART(state, product) {
-      state.cart.push(product)
+      state.cart.push(product);
     },
     REMOVE_FROM_CART(state, product) {
       state.cart = state.cart.filter((item) => item !== product)
@@ -26,8 +26,8 @@ const store = createStore({
   },
   actions: {
     addToCart({ commit }, product) {
-      commit('ADD_TO_CART', product)
-    },
+    commit('ADD_TO_CART', product);
+},
     removeFromCart({ commit }, product) {
       commit('REMOVE_FROM_CART', product)
     },
@@ -52,7 +52,7 @@ const store = createStore({
   },
   getters: {
     cartItems(state) {
-      return state.cart
+      return state.cart;
     },
     cartTotal(state) {
       return state.cart.reduce((total, item) => total + item.price, 0)
@@ -66,4 +66,4 @@ const store = createStore({
   },
 });
 
-export default store
+export default store;

@@ -1,4 +1,3 @@
-
 <script>
 import { defineComponent } from 'vue';
 
@@ -19,15 +18,6 @@ export default defineComponent({
     },
   },
   methods: {
-    async fetchProducts() {
-      try {
-        const response = await axios.get('http://tadamart.test/api/products');
-        this.products = response.data.data;
-        console.log("Fetched products:", this.products);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-      }
-    },
     addToCart(product) {
       console.log("Added to cart:", product);
     },
@@ -36,14 +26,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="product" v-if="products">
-
-    <div v-for="product in products" :key="product.id" class="product-item">
-      <img
-        :src="product.image ? `http://tadamart.test/storage/${product.image}` : '/default-image-path.jpg'"
-        :alt="product.name"
-        class="product-image"
-      />
+  <div class="product">
+    <div class="product-item">
+      <img :src="product.imageURL" :alt="product.name" class="product-image" />
       <h3 class="product-name">
         <router-link :to="'/product/' + product.id">{{ product.name }}</router-link>
       </h3>
@@ -52,7 +37,8 @@ export default defineComponent({
     </div>
   </div>
 </template>
-<style>
+
+<style scoped>
 .product {
   border: 1px solid #ddd;
   padding: 1rem;
