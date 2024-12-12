@@ -1,13 +1,20 @@
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: "HeaderSect",
   data() {
     return {
       searchQuery: "",
-      cartItemCount: 3,
       products: [],
       filteredProducts: [],
     };
+  },
+  computed: {
+    ...mapGetters('products', ['cartItems']),
+    cartItemsCount(){
+      return this.cartItems.length;
+    }
   },
   methods: {
     handleSearch() {
@@ -80,7 +87,7 @@ export default {
         <div class="cart-container">
         <RouterLink to="/cart" class="cart-link">
         <img src="/images/shopping-cart.png" alt="Cart" class="cart-icon" />
-        <span v-if="cartItemCount > 0" class="cart-count">{{ cartItemCount }}</span>
+        <span v-if="cartItemsCount > 0" class="cart-count">{{ cartItemsCount }}</span>
         </RouterLink>
         <RouterLink to="/cart">Cart</RouterLink>
         </div>
