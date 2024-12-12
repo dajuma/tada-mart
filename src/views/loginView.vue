@@ -74,55 +74,75 @@ export default {
 
 <style scoped>
 .login {
-  position: relative;
-  height: 75vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  margin: 10rem;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  background-color: black;
+  bottom: 15rem;
 }
+
 h1 {
   position: relative;
-  color: white;
-  font-size: 8rex;
-  display: flex;
-  justify-content: center;
-  bottom: 7rem;
-  margin: 1rem;
+  font-size: 3rem;
+  text-align: center;
+  bottom: 6rem;
+  margin-bottom: -6.5rem;
 }
+
 form {
-  position: relative;
-  height: 70vh;
-  width: 50vw;
-  left: 17rem;
-  bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .input-container {
-  position: relative;
-  width: 30vw;
-  height: 70vh;
-  left: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
 }
-label {
-  display: block;
-  color: brown;
-  font-size: 3rex;
 
+label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
+
 input {
-  width: 56rex;
-  height: 5rex;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 30vw;
+  height: 4vh;
 }
+
+button {
+  background-color: #007bff;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  width: 30vw;
+  height: 6vh;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
 .error {
   color: red;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
-button {
-  position: relative;
-  font-size: 3rex;
-  width: 8rem;
-  display: flex;
-  justify-content: center;
-  height: 5rex;
+
+.invalid {
+  border-color: red;
 }
 </style>
