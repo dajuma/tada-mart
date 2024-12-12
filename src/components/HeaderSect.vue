@@ -80,7 +80,11 @@ export default {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/cartegory">Category</RouterLink>
+        <RouterLink to="/register">Register</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
+
         <div class="cart-container">
         <RouterLink to="/cart" class="cart-link">
         <img src="/images/shopping-cart.png" alt="Cart" class="cart-icon" />
@@ -89,10 +93,7 @@ export default {
         <RouterLink to="/cart">Cart</RouterLink>
         </div>
         <RouterLink to="/checkout">Checkout</RouterLink>
-        <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/order-tracking">Order Tracking</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
        </nav>
   </header>
 </template>
@@ -112,13 +113,19 @@ nav {
   left: 25rem;
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 nav a {
-  color: darkred;
+  color: black;
   text-decoration: none;
+
 }
 nav a:hover {
-  color: rgb(236, 156, 156);
+  color: rgb(53, 52, 52);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  background: none;
 }
 .logo {
   display: flex;
