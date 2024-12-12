@@ -144,6 +144,7 @@ hr {
   color: black;
 }
 .text-center {
+  display: flex;
   text-align: center;
   width: 100%;
   color: brown;
