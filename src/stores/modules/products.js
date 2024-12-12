@@ -30,12 +30,18 @@ export default {
     removeFromCart({ commit }, product) {
       commit('REMOVE_FROM_CART', product)
     },
+
     async fetchProducts({ commit }) {
       commit('SET_LOADING', true);
       console.log(`Fetching products from: ${import.meta.env.VITE_API_URL}`)
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
-        const data = response.data.data;
+        const data = response.data?.data || [];
+        if (!Array.isArray(data)) {
+          console.error('Unexpected API response structure:', data);
+          commit('SET_PRODUCTS', []);
+          return;
+        }
         const products = data.map(product => {
           return {
             ...product,

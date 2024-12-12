@@ -5,7 +5,7 @@ import products from './modules/products';
 const store = createStore ({
   modules: {
     auth,
-    products
+    products,
   },
 });
 
