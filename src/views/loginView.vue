@@ -44,18 +44,18 @@ export default {
   <div class="login">
     <h1>Login</h1>
     <form @submit.prevent="handleLogin">
-      <div>
+      <div class="input-container">
         <label for="email">Email</label>
         <input
           type="email"
           id="email"
           v-model="email"
           required
-          :class="{ invalid: emailError }"
+          :class="email"
         />
         <p v-if="emailError" class="error">{{ emailError }}</p>
-      </div>
-      <div>
+
+
         <label for="password">Password</label>
         <input
           type="password"
@@ -65,18 +65,64 @@ export default {
           :class="{ invalid: passwordError }"
         />
         <p v-if="passwordError" class="error">{{ passwordError }}</p>
-      </div>
+
       <button type="submit">Login</button>
+    </div>
     </form>
   </div>
 </template>
 
 <style scoped>
+.login {
+  position: relative;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10rem;
+}
+h1 {
+  position: relative;
+  color: white;
+  font-size: 8rex;
+  display: flex;
+  justify-content: center;
+  bottom: 7rem;
+  margin: 1rem;
+}
+form {
+  position: relative;
+  height: 70vh;
+  width: 50vw;
+  left: 17rem;
+  bottom: 5rem;
+}
+.input-container {
+  position: relative;
+  width: 30vw;
+  height: 70vh;
+  left: 7rem;
+}
+label {
+  display: block;
+  color: brown;
+  font-size: 3rex;
+
+}
+input {
+  width: 56rex;
+  height: 5rex;
+}
 .error {
   color: red;
   font-size: 0.9em;
 }
-.invalid {
-  border: 1px solid red;
+button {
+  position: relative;
+  font-size: 3rex;
+  width: 8rem;
+  display: flex;
+  justify-content: center;
+  height: 5rex;
 }
 </style>
