@@ -28,10 +28,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['allProducts', 'isLoading']),
+    ...mapGetters('products', ['allProducts', 'isLoading']),
   },
   methods: {
-    ...mapActions(['fetchProducts']),
+    ...mapActions('products',['fetchProducts']),
     loadProducts(){
       this.fetchProducts();
     }

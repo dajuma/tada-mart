@@ -22,10 +22,10 @@ import { mapGetters, mapActions } from "vuex";
     Product,
   },
   computed: {
-    ...mapGetters(['allProducts', 'isLoading']),
+    ...mapGetters('products', ['allProducts', 'isLoading']),
   },
   methods: {
-    ...mapActions(['fetchProducts']),
+    ...mapActions('products', ['fetchProducts']),
     loadProducts(){
       this.fetchProducts();
     }
@@ -42,6 +42,8 @@ import { mapGetters, mapActions } from "vuex";
 <style scoped>
 .products-view {
   padding: 2rem;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .products-grid {

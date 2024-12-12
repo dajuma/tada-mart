@@ -1,8 +1,7 @@
-import { createStore } from 'vuex';
 import axios from 'axios';
-import auth from './modules/auth';
 
-const store = createStore ({
+export default {
+  namespaced: true,
   state() {
     return {
       cart: [],
@@ -33,18 +32,19 @@ const store = createStore ({
     },
     async fetchProducts({ commit }) {
       commit('SET_LOADING', true);
+      console.log(`Fetching products from: ${import.meta.env.VITE_API_URL}`)
       try {
-        const response = await axios.get('http://tadamart.test/api/products');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
         const data = response.data.data;
         const products = data.map(product => {
           return {
             ...product,
-            'imageURL' : `http://tadamart.test/storage/` + product.image
+            'imageURL' : `${import.meta.env.VITE_API_URL}/storage/` + product.image
           }
         })
         commit('SET_PRODUCTS', products);
       } catch (error) {
-        console.error('Failed to fetch users:', error);
+        console.error('Failed to fetch products:', error);
       } finally {
         commit('SET_LOADING', false);
       }
@@ -64,6 +64,4 @@ const store = createStore ({
       return state.loading
     }
   },
-});
-
-export default store;
+}
