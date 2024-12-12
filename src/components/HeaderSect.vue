@@ -48,9 +48,6 @@ export default {
       height="80"
     />
 
-    <div class="wrapper">
-      <TADAMART msg="Your one-stop motor spare shop" />
-
       <div class="search-bar">
        <input
        type="text"
@@ -97,9 +94,6 @@ export default {
         <RouterLink to="/login">Login</RouterLink>
         <RouterLink to="/register">Register</RouterLink>
        </nav>
-
-
-      </div>
   </header>
 </template>
 
@@ -113,22 +107,11 @@ header {
   color: white;
   margin: 0;
 }
-.wrapper {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  width: 100vw;
-  height: 15vh;
-  top: 0px;
-  left: -33px;
-}
 nav {
-  position: absolute;
-  left: 700px;
+  position: relative;
+  left: 25rem;
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 nav a {
   color: darkred;
@@ -162,7 +145,7 @@ nav a:hover {
   display: flex;
   align-items: center;
   gap: 0;
-  right: 50rem;
+  left: 15rem;
 }
 
 .search-icon {
@@ -193,17 +176,9 @@ nav a:hover {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0;
-  top: 0;
+  gap: 0.2;
+  bottom: 0.56rem;
 }
-.cart-link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
 .cart-icon {
   width: 2rem;
   height: 2rem;

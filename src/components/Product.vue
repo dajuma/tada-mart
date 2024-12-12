@@ -65,11 +65,13 @@ export default defineComponent({
   margin: 1rem 0;
   align-items: center;
   white-space: nowrap;
+  flex-direction: column;
 }
 .product-name a {
   color: darkred;
   font-size: larger;
-}
+  text-align: center;
+  }
 
 .product-name a:hover {
   color: firebrick;
