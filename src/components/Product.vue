@@ -1,6 +1,8 @@
 <script>
 import { defineComponent } from 'vue';
 
+import { mapActions} from 'vuex';
+
 export default defineComponent({
   name: "ProductDetails",
   props: {
@@ -18,8 +20,11 @@ export default defineComponent({
     },
   },
   methods: {
-    addToCart(product) {
-      console.log("Added to cart:", product);
+    ...mapActions('products', ['addToCart']),
+    handleAddToCart() {
+      this.addToCart(this.product);
+      console.log(`${this.product.name} added to cart`);
+      this.$router.push("/cart");
     },
   },
 });
@@ -33,7 +38,7 @@ export default defineComponent({
         <router-link :to="'/product/' + product.id">{{ product.name }}</router-link>
       </h3>
       <p class="product-price">${{ (product.price || 0).toFixed(2) }}</p>
-      <button class="add-to-cart" @click="addToCart(product)">Add to Cart</button>
+      <button class="add-to-cart" @click="handleAddToCart(product)">Add to Cart</button>
     </div>
   </div>
 </template>
