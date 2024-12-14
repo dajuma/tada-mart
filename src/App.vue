@@ -4,7 +4,7 @@ import { defineComponent } from 'vue';
 import HeaderSect from './components/HeaderSect.vue';
 import FooterSect from './components/FooterSect.vue';
 
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import LoadingSpinner from './components/LoadingSpinner.vue';
 
 export default defineComponent({
@@ -16,8 +16,14 @@ export default defineComponent({
     LoadingSpinner
   },
   computed: {
-    ...mapGetters('products', ['isLoading']),
+    ...mapGetters(['isLoading']),
   },
+  methods: {
+    ...mapActions('auth', ['checkAuthStatus'])
+  },
+  created(){
+    this.checkAuthStatus();
+  }
 });
 </script>
 
