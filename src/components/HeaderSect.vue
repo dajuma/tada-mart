@@ -1,78 +1,20 @@
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: "HeaderSect",
   data() {
     return {
       searchQuery: "",
-      cartItemCount: 3,
-      products: [
-      {
-          id: 1,
-          name: "Brake Pads",
-          price: 29.99,
-          image: "/images/brake-pads.jpg",
-          description: "High-performance brake pads for smooth braking.",
-        },
-        {
-          id: 2,
-          name: "Car Battery",
-          price: 99.99,
-          image: "/images/car-battery.png",
-          description: "Reliable and durable car battery with long life.",
-        },
-        {
-          id: 3,
-          name: "Oil Filter",
-          price: 19.99,
-          image: "/images/oil-filter.jpg",
-          description: "durable",
-        },
-        {
-          id: 4,
-          name: "Spark Plug",
-          price: 14.99,
-          image: "/images/spark-plug.jpg",
-          description: "Affordable",
-        },
-        {
-          id: 5,
-          name: "Benz wheel rim",
-          price: 300.99,
-          image: "/images/Benz-wheel-rim.jpg",
-          description: "What your brand needs",
-        },
-        {
-          id: 6,
-          name: "Bmw steering wheel",
-          price: 50.99,
-          image: "/images/bmw-steering-wheel.jpg",
-          description: "Flexible",
-        },
-        {
-          id: 7,
-          name: "Car tires",
-          price: 100.99,
-          image: "/images/tires.jpg",
-          description: "What drives you on?"
-        },
-        {
-          id: 8,
-          name: "Vintage steering wheel",
-          price: 300.99,
-          image: "/images/car-Mustang-Vintage.jpg",
-          description: "Classy",
-        },
-        {
-          id: 9,
-          name: "Tyres",
-          price: 300.99,
-          image: "/images/car-tyres-63928.jpg",
-          description: "flexibility counts",
-        },
-
-      ],
+      products: [],
       filteredProducts: [],
     };
+  },
+  computed: {
+    ...mapGetters('products', ['cartItems']),
+    cartItemsCount(){
+      return this.cartItems.length;
+    }
   },
   methods: {
     handleSearch() {
@@ -106,9 +48,6 @@ export default {
       height="80"
     />
 
-    <div class="wrapper">
-      <TADAMART msg="Your one-stop motor spare shop" />
-
       <div class="search-bar">
        <input
        type="text"
@@ -141,23 +80,21 @@ export default {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/cartegory">Category</RouterLink>
+        <RouterLink to="/register">Register</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
+
         <div class="cart-container">
         <RouterLink to="/cart" class="cart-link">
         <img src="/images/shopping-cart.png" alt="Cart" class="cart-icon" />
-        <span v-if="cartItemCount > 0" class="cart-count">{{ cartItemCount }}</span>
+        <span v-if="cartItemsCount > 0" class="cart-count">{{ cartItemsCount }}</span>
         </RouterLink>
         <RouterLink to="/cart">Cart</RouterLink>
         </div>
         <RouterLink to="/checkout">Checkout</RouterLink>
-        <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/order-tracking">Order Tracking</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
        </nav>
-
-
-      </div>
   </header>
 </template>
 
@@ -171,29 +108,24 @@ header {
   color: white;
   margin: 0;
 }
-.wrapper {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  width: 100vw;
-  height: 15vh;
-  top: 0px;
-  left: -33px;
-}
 nav {
-  position: absolute;
-  left: 700px;
+  position: relative;
+  left: 25rem;
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 nav a {
-  color: darkred;
+  color: black;
   text-decoration: none;
+
 }
 nav a:hover {
-  color: rgb(236, 156, 156);
+  color: rgb(53, 52, 52);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  background: none;
 }
 .logo {
   display: flex;
@@ -220,7 +152,7 @@ nav a:hover {
   display: flex;
   align-items: center;
   gap: 0;
-  right: 50rem;
+  left: 15rem;
 }
 
 .search-icon {
@@ -251,17 +183,9 @@ nav a:hover {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0;
-  top: 0;
+  gap: 0.2;
+  bottom: 0.56rem;
 }
-.cart-link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
 .cart-icon {
   width: 2rem;
   height: 2rem;

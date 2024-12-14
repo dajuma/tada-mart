@@ -6,6 +6,7 @@ export default {
     return {
       cart: [],
       products: [],
+      currentProduct: undefined,
     }
   },
   mutations: {
@@ -18,6 +19,9 @@ export default {
     SET_PRODUCTS(state, products) {
       state.products = products
     },
+    SET_PRODUCT(state, product) {
+      state.currentProduct = product
+    }
   },
   actions: {
     addToCart({ commit }, product) {
@@ -26,12 +30,18 @@ export default {
     removeFromCart({ commit }, product) {
       commit('REMOVE_FROM_CART', product)
     },
+
     async fetchProducts({ commit }) {
-      commit('SET_LOADING', true, { root: true})
+      commit('SET_LOADING', true, { root: true })
       console.log(`Fetching products from: ${import.meta.env.VITE_API_URL}`)
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`)
-        const data = response.data.data
+        const data = response.data?.data || []
+        if (!Array.isArray(data)) {
+          console.error('Unexpected API response structure:', data)
+          commit('SET_PRODUCTS', [])
+          return
+        }
         const products = data.map((product) => {
           return {
             ...product,
@@ -42,7 +52,23 @@ export default {
       } catch (error) {
         console.error('Failed to fetch products:', error)
       } finally {
-        commit('SET_LOADING', false, { root: true})
+        commit('SET_LOADING', false, { root: true })
+      }
+    },
+
+    async fetchProduct({ commit }, productID) {
+      try {
+        commit('SET_LOADING', true, { root: true })
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/products/${productID}`,
+        )
+        const product = response.data?.data || []
+        product['imageURL'] = `${import.meta.env.VITE_API_URL}/storage/` + product.image
+        commit('SET_PRODUCT', product)
+      } catch (error) {
+        console.error('Failed to fetch product:', error)
+      } finally {
+        commit('SET_LOADING', false, { root: true })
       }
     },
   },
@@ -55,6 +81,9 @@ export default {
     },
     allProducts(state) {
       return state.products
-    }
+    },
+    currentProduct(state) {
+      return state.currentProduct
+    },
   },
 }

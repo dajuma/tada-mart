@@ -7,10 +7,10 @@ export default {
 
   },
   computed: {
-    ...mapGetters(['cartItems', 'cartTotal']),
+    ...mapGetters('products', ['cartItems', 'cartTotal']),
   },
   methods: {
-    ...mapActions(['removeFromCart']),
+    ...mapActions('products',['removeFromCart']),
     handleRemoveFromCart(product) {
       this.removeFromCart(product);
     },
@@ -24,7 +24,7 @@ export default {
     <div v-if="cartItems.length > 0">
       <ul class="cart-list">
         <li v-for="item in cartItems" :key="item.id" class="cart-item">
-          <img :src="item.image" :alt="item.name" class="cart-item-image" />
+          <img :src="item.imageURL" :alt="item.name" class="cart-item-image" />
           <div class="cart-item-details">
             <h3>{{ item.name }}</h3>
             <p>${{ item.price.toFixed(2) }}</p>
@@ -41,8 +41,8 @@ export default {
     </div>
     <div v-else>
       <p>Your cart is empty!</p>
-      <RouterLink to="/">Go back to Products</RouterLink>
     </div>
+    <RouterLink to="/products">Go back to Products</RouterLink>
   </div>
 </template>
 

@@ -50,6 +50,7 @@ export default defineComponent({
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  
 }
 #app {
   min-height: 100vh;

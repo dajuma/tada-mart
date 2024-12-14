@@ -26,7 +26,7 @@ const store = createStore ({
 
   modules: {
     auth,
-    products
+    products,
   },
 });
 
