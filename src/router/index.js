@@ -4,7 +4,7 @@ import AboutView from '../views/AboutView.vue'
 import ProductsView from '../views/ProductsView.vue'
 import ProductdetailsView from '../views/ProductdetailsView.vue'
 import CartView from '@/views/CartView.vue'
-import Login from '@/views/loginView.vue'
+import Login from '@/views/LoginView.vue'
 import Register from '@/views/RegisterView.vue'
 
 const router = createRouter({
