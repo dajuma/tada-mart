@@ -48,7 +48,7 @@ export default {
   <div id="home">
     <div id="background-div" class="hero-background"></div>
 
-    <!-- Display categories -->
+  
     <div class="container">
       <div class="row">
         <div class="text-center">
@@ -70,7 +70,6 @@ export default {
     <hr />
 
 
-    <!-- Display top products -->
     <div class="container2">
       <div class="row">
         <div class="text-center">
