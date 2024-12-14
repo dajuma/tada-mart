@@ -1,5 +1,5 @@
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -18,8 +18,20 @@ export default {
           email: this.email,
           password: this.password,
         };
-        this.loginUser(loginData);
-        this.$router.push('/');
+      this.loginUser(loginData).then(resp => {
+        console.log('Yeey, we got a response ', resp);
+        // this.$router.back();
+      }).catch(error => {
+        if (error.errors){
+          const { errors } = error;
+          if(errors.email){
+            this.emailError = errors.email.reduce((errorMsg, error) => errorMsg + error + " ,"  );
+          }
+          if(errors.password){
+            this.passwordError = errors.password.reduce((errorMsg, error) => errorMsg + error + " ,"  );
+          }
+        }
+      });
       }
     },
     validate() {
@@ -37,6 +49,15 @@ export default {
       return !this.emailError && !this.passwordError;
     },
   },
+  computed: {
+    ...mapGetters('auth', ['isAuthenticated'])
+  },
+  created(){
+    if(this.isAuthenticated){
+      console.log('You are already logged in! log out to access this page');
+      this.$router.back();
+    }
+  }
 };
 </script>
 
