@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: "HeaderSect",
@@ -12,11 +12,13 @@ export default {
   },
   computed: {
     ...mapGetters('products', ['cartItems']),
+    ...mapGetters('auth', ['isAuthenticated']),
     cartItemsCount(){
       return this.cartItems.length;
     }
   },
   methods: {
+    ...mapActions('auth', ['logoutUser']),
     handleSearch() {
       this.filteredProducts = this.products.filter(product =>
         product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
@@ -82,9 +84,6 @@ export default {
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/products">Products</RouterLink>
         <RouterLink to="/cartegory">Category</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-
         <div class="cart-container">
         <RouterLink to="/cart" class="cart-link">
         <img src="/images/shopping-cart.png" alt="Cart" class="cart-icon" />
@@ -94,6 +93,10 @@ export default {
         </div>
         <RouterLink to="/checkout">Checkout</RouterLink>
         <RouterLink to="/order-tracking">Order Tracking</RouterLink>
+
+        <RouterLink v-if="!isAuthenticated" to="/register">Register</RouterLink>
+        <RouterLink v-if="!isAuthenticated" to="/login">Login</RouterLink>
+        <button v-if="isAuthenticated" @click="logoutUser" class="logout">Logout</button>
        </nav>
   </header>
 </template>
@@ -119,7 +122,6 @@ nav {
 nav a {
   color: black;
   text-decoration: none;
-
 }
 nav a:hover {
   color: rgb(53, 52, 52);
@@ -205,6 +207,19 @@ nav a:hover {
   line-height: 1rem;
   font-weight: bold;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.logout {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.logout:hover {
+  transform: scale(1.05);
+  background-color: rgba(255, 0, 0, 0.521);
+  border-radius: 5px;
 }
 
 

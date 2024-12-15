@@ -22,7 +22,11 @@ export default defineComponent({
     ...mapActions('auth', ['checkAuthStatus'])
   },
   created(){
-    this.checkAuthStatus();
+    this.checkAuthStatus().then((resp) => {
+      console.log('Welcome back ', resp.data);
+    }).catch(error => {
+      console.log('Sorry, ', error);
+    });
   }
 });
 </script>
@@ -50,7 +54,7 @@ export default defineComponent({
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  
+
 }
 #app {
   min-height: 100vh;
