@@ -6,8 +6,8 @@ export default {
     return {
       email: '',
       password: '',
-      emailError: '',
-      passwordError: '',
+      emailErrors: [],
+      passwordErrors: [],
     };
   },
   methods: {
@@ -20,33 +20,33 @@ export default {
         };
       this.loginUser(loginData).then(resp => {
         console.log('Yeey, we got a response ', resp);
-        // this.$router.back();
+        this.$router.back();
       }).catch(error => {
         if (error.errors){
           const { errors } = error;
           if(errors.email){
-            this.emailError = errors.email.reduce((errorMsg, error) => errorMsg + error + " ,"  );
+            this.emailErrors = errors.email;
           }
           if(errors.password){
-            this.passwordError = errors.password.reduce((errorMsg, error) => errorMsg + error + " ,"  );
+            this.passwordErrors = errors.password;
           }
         }
       });
       }
     },
     validate() {
-      this.emailError = '';
-      this.passwordError = '';
+      this.emailErrors = [];
+      this.passwordErrors = [];
 
       if (!this.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        this.emailError = 'Invalid email format.';
+        this.emailErrors.push('Invalid email format.');
       }
 
       if (this.password.length < 6) {
-        this.passwordError = 'Password must be at least 6 characters.';
+        this.passwordErrors.push('Password must be at least 6 characters.');
       }
 
-      return !this.emailError && !this.passwordError;
+      return !this.emailErrors.length && !this.passwordErrors.length;
     },
   },
   computed: {
@@ -55,7 +55,7 @@ export default {
   created(){
     if(this.isAuthenticated){
       console.log('You are already logged in! log out to access this page');
-      this.$router.back();
+      this.$router.push('/');
     }
   }
 };
@@ -72,10 +72,11 @@ export default {
           id="email"
           v-model="email"
           required
-          :class="email"
+          :class="{ invalid: emailErrors.length }"
         />
-        <p v-if="emailError" class="error">{{ emailError }}</p>
-
+        <ul>
+          <li v-for="(error,idx) in emailErrors" class="error" :key="idx">{{ error }}</li>
+        </ul>
 
         <label for="password">Password</label>
         <input
@@ -83,9 +84,11 @@ export default {
           id="password"
           v-model="password"
           required
-          :class="{ invalid: passwordError }"
+          :class="{ invalid: passwordErrors.length }"
         />
-        <p v-if="passwordError" class="error">{{ passwordError }}</p>
+        <ul>
+          <li v-for="(error,idx) in passwordErrors" class="error" :key="idx">{{ error }}</li>
+        </ul>
 
       <button type="submit">Login</button>
     </div>

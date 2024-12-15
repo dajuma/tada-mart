@@ -73,7 +73,7 @@ export default {
   created(){
     if(this.isAuthenticated){
       console.log('You are already logged in! log out to access this page');
-      this.$router.back();
+      this.$router.push('/');
     }
   }
 };
