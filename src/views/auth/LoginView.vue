@@ -19,9 +19,23 @@ export default {
           password: this.password,
         };
       this.loginUser(loginData).then(resp => {
-        console.log('Yeey, we got a response ', resp);
-        this.$router.back();
+
+        this.$swal({
+          title: `Welcome, ${resp?.name}`,
+          timer: 2000,
+          type: 'success',
+          width: '20rem',
+          iconColor: 'white',
+          position: 'top-right',
+          showConfirmButton: false,
+          customClass: {
+            popup: 'colored-toast'
+          }
+        });
+        this.$router.push('/');
+
       }).catch(error => {
+
         if (error.errors){
           const { errors } = error;
           if(errors.email){
@@ -169,4 +183,5 @@ button:hover {
 .invalid {
   border-color: red;
 }
+
 </style>

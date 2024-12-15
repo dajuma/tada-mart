@@ -28,8 +28,19 @@ export default {
           password_confirmation: this.password_confirmation
         };
         this.registerUser(userData).then(resp => {
-          console.log('Yeey, we got a response ', resp);
-          // this.$router.push('/');
+          this.$swal({
+            title: `Welcome, ${resp?.name}`,
+            timer: 2000,
+            type: 'success',
+            width: '20rem',
+            iconColor: 'white',
+            position: 'top-right',
+            showConfirmButton: false,
+            customClass: {
+              popup: 'colored-toast'
+            }
+          });
+          this.$router.push('/');
         }).catch(error => {
           if (error.errors){
           const { errors } = error;

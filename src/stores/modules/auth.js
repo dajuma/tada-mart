@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 axios.defaults.withCredentials = true
 axios.defaults.withXSRFToken = true
@@ -32,7 +32,7 @@ export default {
               console.log('User is : ', resp.data);
               commit('SET_USER', resp.data);
               commit('SET_LOADING', false, { root: true});
-              resolve('success');
+              resolve(resp.data);
             });
           });
         }).catch(error => {
@@ -75,7 +75,7 @@ export default {
               console.log('User is : ', resp.data);
               commit('SET_USER', resp.data);
               commit('SET_LOADING', false, { root: true});
-              resolve('success');
+              resolve(resp.data);
             });
 
           }).catch(error => {
