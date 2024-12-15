@@ -101,6 +101,30 @@ export default {
       });
     },
 
+    logoutUser({ commit }) {
+      return new Promise((resolve, reject) => {
+        commit('SET_LOADING', true, { root: true});
+        // before calling login, set CSRF cookie
+        axios.get(`${import.meta.env.VITE_API_URL}/sanctum/csrf-cookie`).then(() => {
+          // Logout the user
+          return axios.post(`${import.meta.env.VITE_API_URL}/logout`).then(resp => {
+            console.log("logged out ", resp);
+            commit('SET_LOADING', false, { root: true});
+            commit('SET_USER', null);
+            resolve('success');
+          });
+        }).catch(error => {
+          if(error.response){
+            // Handle the error in the view
+            reject(error.response.data);
+          } else{
+            reject(error.message);
+          }
+          commit('SET_LOADING', false, { root: true});
+        });
+      });
+    },
+
     checkAuthStatus({ commit }) {
       return new Promise((resolve, reject) => {
         // Check if user is authenticated in session, improve to use local storage in future
@@ -114,10 +138,14 @@ export default {
         }).catch(error => {
           if(error.response){
             // Handle the error in the view
-            reject(error.response.data);
+            reject(error.response?.data?.message);
+            if(error.response.status == '401'){
+              commit('SET_USER', null);
+            }
           } else{
-            reject(error.message);
+            reject("No Auth: ", error.message);
           }
+          commit('SET_LOADING', false, { root: true});
         });
       });
     }
